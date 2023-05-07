@@ -1,11 +1,17 @@
-const express = require('express')
-const app = express()
-const port = 3000
+var createError = require('http-errors');
+var express = require('express');
 
-app.get('/', (req, res) => {
-  res.send('Hello World! hihi')
-})
+var instagramRouter = require('./routes/instagram');
+var usersRouter = require('./routes/user');
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+var app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use('/users', usersRouter);
+app.use('/sm-instagram', instagramRouter);
+
+module.exports = {
+  app
+}
