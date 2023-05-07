@@ -1,17 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
+import express from "express";
 
-var instagramRouter = require('./routes/instagram');
-var usersRouter = require('./routes/user');
+import instagramRouter from "./routes/instagram.js";
+import usersRouter from "./routes/user.js";
 
-var app = express();
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/users', usersRouter);
-app.use('/sm-instagram', instagramRouter);
+app.use("/users", usersRouter);
+app.use("/sm-instagram", instagramRouter);
 
-module.exports = {
-  app
-}
+export default app;

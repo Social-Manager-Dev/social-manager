@@ -1,4 +1,5 @@
-const express = require("express");
+import express from "express";
+
 const router = express.Router();
 
 // Home page route.
@@ -11,4 +12,4 @@ router.get("/get-details", function (req, res) {
   res.send("About this wiki");
 });
 
-module.exports = router;
+export default router;
