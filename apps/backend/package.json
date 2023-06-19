@@ -4,6 +4,9 @@
   "description": "",
   "main": "www.js",
   "type": "module",
+  "engines": {
+    "node": "16.16"
+  },
   "scripts": {
     "dev": "nodemon www.js",
     "start": "node www.js"
