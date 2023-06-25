@@ -8,6 +8,7 @@
     "node": "16.16"
   },
   "scripts": {
+    "build": "install www.js",
     "dev": "nodemon www.js",
     "start": "node www.js"
   },

@@ -4,7 +4,7 @@ import {loginInstagram, instagramUserInfo, getUserInsights, CreatePost, Schedule
 const router = express.Router();
 
 // Instagram auth routes 
-router.post("/signin-instagram", loginInstagram);
+router.get("/signin-instagram", loginInstagram);
 
 // Instagram action routes 
 router.get("/get-instagram-user-info", instagramUserInfo);
