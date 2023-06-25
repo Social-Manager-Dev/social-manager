@@ -4,6 +4,7 @@ const router = express.Router();
 
 // Home page route.
 router.get("/get-user", function (req, res) {
+  console.log(req.query);
   res.send("Create a post");
 });
 
