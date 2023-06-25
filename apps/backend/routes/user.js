@@ -4,8 +4,8 @@ const router = express.Router();
 
 // Home page route.
 router.get("/get-user", function (req, res) {
-  console.log(req.query);
-  res.send(`Access Key: ${req.query}`);
+  console.log(req.query.code);
+  res.send(`Access Key: ${req.query.code}`);
 });
 
 // About page route.
