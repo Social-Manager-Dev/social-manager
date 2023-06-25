@@ -13,6 +13,4 @@ const userAccessKey = new Schema(
 
 const UserAccessKey = mongoose.model("AccessKeysTemp", userAccessKey);
 
-export {
-  UserAccessKey
-};
+export default UserAccessKey;
