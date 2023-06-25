@@ -5,7 +5,7 @@ const router = express.Router();
 // Home page route.
 router.get("/get-user", function (req, res) {
   console.log(req.query);
-  res.send("Create a post");
+  res.send(`Access Key: ${req.query}`);
 });
 
 // About page route.
