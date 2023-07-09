@@ -9,18 +9,42 @@ const router = express.Router();
 router.get("/get-user-code", async function (req, res) {
   console.log(req.query.code);
 
-  axios({
-    method: "post",
-    url: "https://api.instagram.com/oauth/access_token",
-    data: {
-      client_id: "785166699786224",
-      client_secret: "c85620d91666afed085eab5e66a0dc1f",
-      grant_type: "authorization_code",
-      redirect_uri:
-        "https://kullaj-social-media.onrender.com/users/get-user-token",
-      code: req.query.code,
-    },
-  }).catch((err) => console.log(err));
+  // axios({
+  //   method: "post",
+  //   url: "https://api.instagram.com/oauth/access_token",
+  //   data: {
+  //     client_id: "785166699786224",
+  //     client_secret: "c85620d91666afed085eab5e66a0dc1f",
+  //     grant_type: "authorization_code",
+  //     redirect_uri:
+  //       "https://kullaj-social-media.onrender.com/users/get-user-token",
+  //     code: req.query.code,
+  //   },
+  // }).catch((err) => console.log(err));
+
+  try {
+    const response = await axios.post("https://api.instagram.com/oauth/access_token", null, {
+      params: {
+        client_id: "785166699786224",
+        client_secret: "c85620d91666afed085eab5e66a0dc1f",
+        grant_type: 'authorization_code',
+        redirect_uri: "https://kullaj-social-media.onrender.com/users/get-user-token",
+        code: req.query.code,
+      },
+    });
+
+    const { access_token, user_id } = response.data;
+
+    // Use the access_token and user_id as needed in the next step
+
+    res.json({
+      access_token,
+      user_id,
+    });
+  } catch (error) {
+    console.error('Error exchanging code for access token:', error);
+    res.status(500).json({ error: 'Failed to exchange code for access token' });
+  }
 
   // axios
   //   .post("https://api.instagram.com/oauth/access_token", {
