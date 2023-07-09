@@ -9,6 +9,19 @@ const router = express.Router();
 router.get("/get-user-code", async function (req, res) {
   console.log(req.query.code);
 
+  axios({
+    method: "post",
+    url: "https://api.instagram.com/oauth/access_token",
+    data: {
+      client_id: "785166699786224",
+      client_secret: "c85620d91666afed085eab5e66a0dc1f",
+      grant_type: "authorization_code",
+      redirect_uri:
+        "https://kullaj-social-media.onrender.com/users/get-user-token",
+      code: req.query.code,
+    },
+  }).catch((err) => console.log(err));
+
   // axios
   //   .post("https://api.instagram.com/oauth/access_token", {
   //     client_id: "785166699786224",
@@ -19,20 +32,7 @@ router.get("/get-user-code", async function (req, res) {
   //     code: req.query.code,
   //   })
   //   .catch((err) => console.log(err));
-  let result = await request.post({
-    url: "https://api.instagram.com/oauth/access_token",
-    form: {
-      client_id: "785166699786224",
-      client_secret: "c85620d91666afed085eab5e66a0dc1f",
-      grant_type: "authorization_code",
-      redirect_uri:
-        "https://kullaj-social-media.onrender.com/users/get-user-token",
-      code: req.body.code,
-    },
-  });
 
-  accessToken = JSON.parse(result).access_token;
-  console.log(accessToken)
   // const newAccessKey = new UserAccessKey({
   //   access_key: 'hi'
   // })
