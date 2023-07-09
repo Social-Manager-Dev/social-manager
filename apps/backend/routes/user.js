@@ -8,14 +8,16 @@ const router = express.Router();
 router.get("/get-user-code", function (req, res) {
   console.log(req.query.code);
 
-  axios.post("https://api.instagram.com/oauth/access_token", {
-    client_id: "785166699786224",
-    client_secret: "c85620d91666afed085eab5e66a0dc1f",
-    grant_type: "authorization_code",
-    redirect_uri:
-      "https://kullaj-social-media.onrender.com/users/get-user-token",
-    code: `${req.query.code}#_`
-  });
+  axios.post("https://api.instagram.com/oauth/access_token", [
+    {
+      client_id: "785166699786224",
+      client_secret: "c85620d91666afed085eab5e66a0dc1f",
+      grant_type: "authorization_code",
+      redirect_uri:
+        "https://kullaj-social-media.onrender.com/users/get-user-token",
+      code: req.query.code,
+    },
+  ]).catch((err)=>console.log(err))
 
   // const newAccessKey = new UserAccessKey({
   //   access_key: 'hi'
